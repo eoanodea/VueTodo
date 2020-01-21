@@ -4,6 +4,9 @@
 
     >
         <add-todo v-on:added-todo="addNewTodo"></add-todo>
+        <br />
+        <b-progress :value="progressValue()" :max="todos.length" show-progress animated></b-progress>
+
         <b-table striped hover :items="todos">
             <template v-slot:cell(done)="data">
                 <b-button variant="success" v-if="!data.value" @click="completeTodo(data.index, true)">Done</b-button> 
@@ -14,6 +17,7 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
 import AddTodo from './AddTodo'
 
 export default {
@@ -50,6 +54,13 @@ export default {
             todos[index].done = bool
 
             this.todos = todos
+        },
+
+        progressValue() {
+            let {todos} = this
+            const filteredTodos = todos.filter(dat => dat.done !== false)
+            console.log(filteredTodos)
+            return (filteredTodos.length)
         }
     }
 }

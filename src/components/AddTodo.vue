@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span class="clearfix">
         <b-button v-b-modal.modal-1 variant="success" class="float-right">Add Todo</b-button>
 
         <b-modal id="modal-1" title="New Todo" @ok="handleOk">
