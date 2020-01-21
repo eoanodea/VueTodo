@@ -4,15 +4,16 @@
 
     >
         <add-todo v-on:added-todo="addNewTodo"></add-todo>
-        <b-table striped hover :items="todos"></b-table>
+        <b-table striped hover :items="todos">
+            <template v-slot:cell(done)="data">
+                <b-button variant="success" v-if="!data.value" @click="completeTodo(data.index, true)">Done</b-button> 
+                <b-button variant="danger" v-else @click="completeTodo(data.index, false)">Not Done</b-button>
+            </template>
+        </b-table>
     </b-card>
 </template>
 
 <script>
-
-/* eslint-disable no-console */
-
-// import Todo from './components/Todo'
 import AddTodo from './AddTodo'
 
 export default {
@@ -29,7 +30,6 @@ export default {
     },
     methods: {
         addNewTodo(todo) {
-            console.log('new todo!!', todo)
             let {todos} = this
             
             const todoIndex = todos.length
@@ -41,6 +41,14 @@ export default {
             }
 
             todos.push(newTodo)
+            this.todos = todos
+        },
+
+        completeTodo(index, bool) {
+            let {todos} = this
+            
+            todos[index].done = bool
+
             this.todos = todos
         }
     }

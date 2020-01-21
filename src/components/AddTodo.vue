@@ -25,44 +25,38 @@
 </template>
 
 <script>
-/* eslint-disable no-console */
-// import Todo from './components/Todo'
+    export default {
+        data() {
+            return {
+                todo: {
+                    name: "",
+                    done: false
+                }
+            }
+        }, 
+        methods: {
+            
+            validateForm() {
+                if(this.todo.name == "") return false
+                return true
+            },
 
-export default {
-    data() {
-        return {
-            todo: {
-                name: "",
-                done: false
+            handleOk(bvModalEvt) {
+                bvModalEvt.preventDefault()
+                this.onSubmit()
+            },
+
+            onSubmit() {
+                if(this.validateForm()) {
+                    this.$emit("added-todo", this.todo)
+                    
+                    this.$nextTick(() => {
+                        this.$bvModal.hide('modal-1')
+                        this.todo.name = ""
+                    })
+
+                } else return
             }
         }
-    }, 
-    components: {
-        // Todo
-    },
-    methods: {
-        
-        validateForm() {
-            if(this.todo.name == "") return false
-            return true
-        },
-
-        handleOk(bvModalEvt) {
-            bvModalEvt.preventDefault()
-            this.onSubmit()
-        },
-
-        onSubmit() {
-            if(this.validateForm()) {
-                console.log('validated!!', this.todo.name)
-                this.$emit("added-todo", this.todo)
-                // this.todo.name = ""
-                this.$nextTick(() => {
-                    this.$bvModal.hide('modal-1')
-                })
-
-            } else return
-        }
     }
-}
 </script>
