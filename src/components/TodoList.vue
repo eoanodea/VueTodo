@@ -17,7 +17,6 @@
 </template>
 
 <script>
-/* eslint-disable no-console */
 import AddTodo from './AddTodo'
 
 export default {
@@ -58,9 +57,9 @@ export default {
 
         progressValue() {
             let {todos} = this
-            const filteredTodos = todos.filter(dat => dat.done !== false)
-            console.log(filteredTodos)
-            return (filteredTodos.length)
+            const filteredTodos = todos.filter(dat => dat.done)
+
+            return filteredTodos.length
         }
     }
 }
