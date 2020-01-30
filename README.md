@@ -1,5 +1,9 @@
 # vue-todo
 
+A simple frontend Todo app using Vue.JS
+
+A live demo of the application can be found <a href="https://code.wspace.ie/vueTodo/">here</a>
+
 ## Project setup
 ```
 npm install
@@ -15,10 +19,3 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
